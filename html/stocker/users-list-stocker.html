@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração de Usuários</title>
+    <link rel="icon" href="../../assets/images/icone.ico">
+    <link rel="stylesheet" href="../../css/users-list.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+</head>
+
+<body>
+
+    <header>
+        <a href="estoquista.html" class="logo"><img src="../../assets/images/logo.220x186.png" alt=""></a>
+
+        <ul class="navmenu">
+            <li><a href="estoquista.html">Dashboard</a></li>
+            <li><a href="users-list-stocker.html">Lista de Usuários</a></li>
+            <li><a href="products-list-stocker.html">Lista de Produtos</a></li>
+            <li><a href="../shop-lista-pedidos.html">Lista de Pedidos</a></li>
+
+        </ul>
+
+        <div class="nav-icon">
+            <a href="#"><i class='bx bx-search'></i></a>
+            <a href="updateUser-stocker.html"><i class='bx bx-user'></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </header>
+
+    <section class="main-home">
+        <h1>Administração de <span> Usuários</span></h1>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Pesquisar usuários..." onkeyup="filterTable()">
+            <a href="" class = "search-btn"><i class='bx bx-search-alt-2' id="search-icon"></i></a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Usuário</th>
+                    <th>Email</th>
+                    <th>Cargo</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+
+            </tbody>
+        </table>
+    </section>
+
+    <script type="module" src="../../js/usersStocker.js" defer></script>
+    
+</body>
+
+</html>

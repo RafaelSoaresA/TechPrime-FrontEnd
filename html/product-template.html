@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto - TechPrime</title>
+    <link rel="icon" href="../assets/images/icone.ico">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <a href="index.html" class="logo"><img src="../assets/images/logo.220x186.png" alt="TechPrime Logo"></a>
+        <ul class="navmenu">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="shop.html">Loja</a></li>
+            <li><a href="#">Ofertas</a></li>
+            <li><a href="#">Suporte</a></li>
+            <li><a href="#">Sobre</a></li>
+        </ul>
+        <div class="nav-icon">
+            <a href="#"><i class='bx bx-search'></i></a>
+            <a href="login.html"><i class='bx bx-user'></i></a>
+            <a href="shop-lista-pedidos.html" ><i class='bx bxs-package'></i></a>   
+            <a href="shop-cart.html"><i class='bx bx-cart'></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </header>
+
+    <!-- Seção de Produto -->
+    <section class="product-detail">
+        <div class="product-container">
+            <div class="product-image">
+                <input type="hidden" id="img1" value="" />
+
+                <div class="carousel-wrapper">
+                    <button id="prevButton" class="carousel-button">◀</button>
+                    
+                    <div id="carouselContainer" class="carousel">
+                        <img id="carousel-item"></img>
+                    </div>
+                    
+                    <button id="nextButton" class="carousel-button">▶</button>
+                </div>
+                
+                <h2 id="name"></h2>
+                <p><strong>Descrição: </strong><span id="description"></span></p>             
+                <p id="price"></p>         
+                <div class="rating" id="rating">
+                    <i class='bx bxs-star' data-value="1"></i>
+                    <i class='bx bxs-star' data-value="2"></i>
+                    <i class='bx bxs-star' data-value="3"></i>
+                    <i class='bx bxs-star' data-value="4"></i>
+                    <i class='bx bxs-star' data-value="5"></i>
+                </div>
+                <p></p>
+                <input type="submit" id="adicionarAoCarrinho" value="Adicionar ao carrinho">
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Contato -->
+    <section class="contact">
+        <div class="contact-info">
+            <div class="first-info">
+                <img src="../assets/images/logo.220x186.png" alt="TechPrime Logo">
+                <p>Senac nações unidas, <br>São Paulo 04661-300</p>
+                <p>11943675407</p>
+                <p>techprime.contato@tp.com.br</p>
+                <div class="social-icon">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-youtube'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+
+            <div class="second-info">
+                <h4>Suporte</h4>
+                <p>Fale Conosco</p>
+                <p>Sobre nós</p>
+                <p>Dúvidas Frequentes</p>
+                <p>Privacidade</p>
+            </div>
+
+            <div class="third-info">
+                <h4>Departamentos</h4>
+                <p>Hardware</p>
+                <p>Periféricos</p>
+                <p>Ofertas Relâmpago</p>
+                <p>Cupons de Desconto</p>
+            </div>
+
+            <div class="forth-info">
+                <h4>TechPrime</h4>
+                <p>Afilie-se</p>
+                <p>Termos de Uso</p>
+                <p>Política de Privacidade</p>
+                <p>Política de Cookies</p>
+                <p>Mapa do Site</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Texto Final -->
+    <div class="end-text">
+        <p>&copy; 2024 TechPrime. Todos os direitos reservados.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script type="module" src="../js/product-template.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- @Desenvolvido por: Matheus Campos & Rafael Abrantes -->
+
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1"
+    />
+    <title>TechPrime | Registro de novo cliente</title>
+    <link rel="icon" href="../assets/images/ball.ico" />
+    <link rel="icon" href="../../assets/images/icone.ico">
+    <link href="../../css/register.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+
+  </head>
+
+  <body>
+    <!-- Conteúdo -->
+    <main>
+      <section class="area-login">
+        <div class="login">
+          <div>
+            <a href="../../html/index.html">
+              <img
+                class="logo"
+                src="../../assets/images/logo.220x186.png"
+                alt="Logo"
+            /></a>
+          </div>
+
+          <form id="registerForm">
+            
+            <p>E-mail:</p>
+            <input
+              type="text"
+              id="emailCreate"
+              placeholder="Digite seu e-mail"
+              autofocus
+              required
+              minlength="1"
+            />
+
+            <p>Nome completo:</p>
+            <input
+              type="text"
+              id="nameCreate"
+              placeholder="Digite seu nome e sobrenome"
+              required
+              minlength="5"
+            />
+            <span id="nameError" class="error"></span>
+
+            <p>Data de nascimento:</p>
+            <input
+              type="text"
+              id="birthdayCreate"
+              placeholder="Digite sua data de nascimento (DD/MM/AAAA)"
+              required
+              minlength="10"
+              maxlength="10"
+            />
+
+            <p>Gênero:</p>
+            <select id="gender" name="gender" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+                <option value="N">Prefiro não informar</option>
+            </select>
+
+            <br />
+            <hr />
+            <h3>Endereço de Faturamento</h3>
+            <hr />
+            
+            <p>CEP:</p>
+            <input
+            type="text"
+            id="cep"
+            placeholder="Digite seu CEP"
+            required
+            minlength="8"
+            maxlength="9"
+            onblur="buscarEndereco(this)"
+            /> 
+            
+            <p>Tipo Logradouro:</p>
+            <input
+            type="text"
+            id="tipologradouro"
+            required
+            minlength="1"
+            />
+
+            <p>Logradouro:</p>
+            <input
+            type="text"
+            id="logradouro"
+            required
+            minlength="1"
+            />
+
+            <p>Número:</p>
+            <input
+            type="text"
+            id="numero"
+            required
+            minlength="1"
+            />
+
+            <p>Complemento:</p>
+            <input type="text" 
+            id="complemento" 
+            />
+
+            <p>Bairro:</p>
+            <input
+            type="text"
+            id="bairro"
+            required
+            minlength="1"
+            />
+
+            <p>Cidade:</p>
+            <input
+            type="text"
+            id="cidade"
+            required
+            minlength="1"
+            />
+
+            <p>UF:</p>
+            <input
+            type="text"
+            id="uf"
+            required
+            minlength="2"
+            maxlength="2"
+            />
+
+            <br />
+            <hr />
+            <h3>Endereço de Entrega</h3>
+            <hr />
+            
+            <p>Apelido:</p>
+            <input
+            type="text"
+            id="apelidoDelivery"
+            placeholder="Digite o apelido deste endereço"
+            required
+            minlength="3"
+            maxlength="50"
+            /> 
+
+            <p>CEP:</p>
+            <input
+            type="text"
+            id="cepDelivery"
+            placeholder="Digite seu CEP"
+            required
+            minlength="8"
+            maxlength="9"
+            onblur="buscarEndereco(this)"
+            /> 
+            
+            <p>Tipo Logradouro:</p>
+            <input
+            type="text"
+            id="tipologradouroDelivery"
+            required
+            minlength="1"
+            />
+
+            <p>Logradouro:</p>
+            <input
+            type="text"
+            id="logradouroDelivery"
+            required
+            minlength="1"
+            />
+
+            <p>Número:</p>
+            <input
+            type="text"
+            id="numeroDelivery"
+            required
+            minlength="1"
+            />
+
+            <p>Complemento:</p>
+            <input type="text" 
+            id="complementoDelivery" 
+            />
+
+            <p>Bairro:</p>
+            <input
+            type="text"
+            id="bairroDelivery"
+            required
+            minlength="1"
+            />
+
+            <p>Cidade:</p>
+            <input
+            type="text"
+            id="cidadeDelivery"
+            required
+            minlength="1"
+            />
+
+            <p>UF:</p>
+            <input
+            type="text"
+            id="ufDelivery"
+            required
+            minlength="2"
+            maxlength="2"
+            />
+
+            <p>Telefone:</p>
+            <input
+              type="text"
+              id="phoneCreate"
+              placeholder="DDD - Telefone"
+              required
+              minlength="11"
+              maxlength="11"
+            />
+
+            <p>Telefone 2: (Opcional)</p>
+            <input
+              type="text"
+              id="phone2Create"
+              placeholder="DDD - Telefone"
+              minlength="11"
+              maxlength="11"
+              value=""
+            />
+
+            <p>CPF:</p>
+            <input
+              type="text"
+              id="cpfCreate"
+              placeholder="Digite seu CPF (somente números)"
+              required
+              minlength="11"
+              maxlength="11"
+            />
+
+            <p>Senha:</p>
+            <input
+              type="password"
+              id="passCreate"
+              placeholder="Digite sua senha"
+              required
+              minlength="1"
+            />
+
+            <p>Repita a Senha novamente:</p>
+            <input
+              type="password"
+              id="passCreateRepeat"
+              placeholder="Digite sua senha novamente"
+              required
+              minlength="1"
+            />
+            <span id="passwordError" class="error"></span>
+            <input type="submit" value="CADASTRAR-SE" />
+          </form>
+
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="../../js/register.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+      async function buscarEndereco(control) {
+
+        function separarLogradouro(frase) {
+                const palavras = frase.split(' ');
+                const primeiraPalavra = palavras.shift();
+                const restante = palavras.join(' ');
+                return {
+                    TipoLogradouro: primeiraPalavra,
+                    Logradouro: restante,
+                };
+        }
+          //const cep = document.getElementById('cep').value;
+          const cep = control.value;
+          const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
+          
+          if (!cepRegex.test(cep)) {
+            if (cep==="") {
+                return;
+            }  
+            alert('Por favor, insira um CEP válido no formato 00000-000.');
+            return;
+          }
+
+          try {
+              const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+              const data = await response.json();
+              
+              if (data.erro) {
+                  alert('CEP não encontrado!');
+                  return;
+              }
+
+              if (control.id === "cep") {
+                document.getElementById('tipologradouro').value = separarLogradouro(data.logradouro).TipoLogradouro;
+                document.getElementById('logradouro').value = separarLogradouro(data.logradouro).Logradouro;
+                document.getElementById('bairro').value = data.bairro;
+                document.getElementById('cidade').value = data.localidade;
+                document.getElementById('uf').value = data.uf;
+                document.getElementById('complemento').value = data.complemento || '';                
+              }
+
+              if (control.id === "cepDelivery") {
+                document.getElementById('tipologradouroDelivery').value = separarLogradouro(data.logradouro).TipoLogradouro;
+                document.getElementById('logradouroDelivery').value = separarLogradouro(data.logradouro).Logradouro;
+                document.getElementById('bairroDelivery').value = data.bairro;
+                document.getElementById('cidadeDelivery').value = data.localidade;
+                document.getElementById('ufDelivery').value = data.uf;
+                document.getElementById('complementoDelivery').value = data.complemento || '';                
+              }
+
+          } catch (error) {
+              alert('Erro ao buscar o endereço. Tente novamente mais tarde.');
+              console.error('Erro:', error);
+          }
+      }
+  </script>
+
+  </body>
+</html>

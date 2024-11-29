@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe do Pedido</title>
+    <link rel="icon" href="../assets/images/icone.ico">
+    <link rel="stylesheet" href="../css/shop-cart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <style>
+        .endereco-estrutura {
+            white-space: pre-wrap;
+        }
+    </style>
+    
+</head>
+
+<body>
+
+    <header>
+        <a href="#" class="logo"><img src="../assets/images/logo.220x186.png" alt="Logo"></a>
+
+        <ul class="navmenu" id="navmenuCustomer">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="shop.html">Loja</a></li>
+            <li><a href="#">Ofertas</a></li>
+            <li><a href="#">Suporte</a></li>
+            <li><a href="#">Sobre</a></li>
+        </ul>
+
+        <ul class="navmenu" id="navmenuAdmin">
+            <li><a href="admin/admin.html">Dashboard</a></li>
+            <li><a href="admin/users-list.html">Lista de Usuários</a></li>
+            <li><a href="admin/products-list.html">Lista de Produtos</a></li>
+            <li><a href="admin/register-users.html">Cadastrar Usuários</a></li>
+            <li><a href="admin/register-products.html">Cadastrar Produtos</a></li>
+            <li><a href="shop-lista-pedidos.html">Lista de Pedidos</a></li>
+
+        </ul>
+
+        <ul class="navmenu" id="navmenuStocker">
+            <li><a href="stocker/estoquista.html">Dashboard</a></li>
+            <li><a href="stocker/users-list-stocker.html">Lista de Usuários</a></li>
+            <li><a href="stocker/products-list-stocker.html">Lista de Produtos</a></li>
+            <li><a href="shop-lista-pedidos.html">Lista de Pedidos</a></li>
+        </ul>
+
+        <div class="nav-icon">
+            <a href="#"><i class='bx bx-search'></i></a>
+            <a href="#" onclick="IrHome();"><i class='bx bx-user'></i></a>
+            <a href="shop-lista-pedidos.html" id="iconListaPedidos" ><i class='bx bxs-package'></i></a>   
+            <a href="shop-cart.html" id="iconCart"><i class='bx bx-cart'></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </header>
+
+    <section class="cart-section">
+        
+        <div class="summary-item total">
+            <label><strong id="NovoPedido"></strong></label>
+        </div>
+        
+        <table id="orderUpdateTable">
+            <thead>
+                <tr>
+                    <th>Atualização do Pedido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="order-data-cell">    
+                        <label for="status">Status:</label>
+                        <select id="status" name="status">
+                            <option value="AP">Aguardando Pagamento</option>
+                            <option value="PR">Pagamento Rejeitado</option>
+                            <option value="PS">Pagamento com Sucesso</option>
+                            <option value="AR">Aguardando Retirada</option>
+                            <option value="TR">Em Trânsito</option>
+                            <option value="EN">Entregue</option>
+                            <option value="CN">Cancelado</option>
+                        </select>
+                        <br><br>
+                    
+                        <label for="invoiceNumber">Número da Nota Fiscal:</label>
+                        <input type="text" id="invoiceNumber" name="invoiceNumber">
+                        <br><br>
+                    
+                        <label for="observations">Observações:</label>
+                        <textarea id="observations" name="observations"></textarea>
+                        <br><br>
+                    
+                        <button id="executeUpdateButton">Executar</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h1>Resumo do Pedido</h1>
+        <br />
+        <table id="orderDataTable">
+            <thead>
+                <tr>
+                    <th>Dados do Pedido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="order-data-cell"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <table id="userDataTable">
+            <thead>
+                <tr>
+                    <th>Dados do Cliente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="user-data-cell"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="billingAddressTable">
+            <thead>
+                <tr>
+                    <th>Endereço de Faturamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="address-data-cell"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table id="deliveryAddressTable">
+            <thead>
+                <tr>
+                    <th>Endereço de Entrega</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="address-data-cell"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <h3>Itens do Pedido</h3>
+        <table id="orderSummaryTable">
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <br />
+        <div class="summary-item total">
+            <label><strong>Valor Total:</strong><div id="totalPrice"></div></label>
+        </div>
+        <br />
+        <h3>Histórico do Pedido</h3>
+        <table id="orderHistoryTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Data de Criação</th>
+                    <th>Email do Usuário</th>
+                    <th>Status Anterior</th>
+                    <th>Status Atual</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        
+    </section>
+    <!-- contact-section -->
+
+    <section class="contact">
+        <div class="contact-info">
+            <div class="first-info">
+                <img src="../assets/images/logo.220x186.png" alt="">
+                <p>Senac nações unidas, <br> São Paulo 04444-000</p>
+                <p>11943675407</p>
+                <p>techprime.contato@tp.com.br</p>
+                <div class="social-icon">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-youtube'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+
+            <div class="second-info">
+                <h4>Suporte</h4>
+                <p>Fale Conosco</p>
+                <p>Sobre nós</p>
+                <p>Dúvidas Frequentes</p>
+                <p>Privacidade</p>
+            </div>
+
+            <div class="third-info">
+                <h4>Departamentos</h4>
+                <p>Hardware</p>
+                <p>Periféricos</p>
+                <p>Ofertas Relâmpago</p>
+                <p>Cupons de Desconto</p>
+            </div>
+
+            <div class="forth-info">
+                <h4>TechPrime</h4>
+                <p>Afilie-se</p>
+                <p>Termos de Uso</p>
+                <p>Política de Privacidade</p>
+                <p>Política de Cookies</p>
+                <p>Mapa do Site</p>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="end-text">
+        <p>&copy; 2024 TechPrime. Todos os direitos reservados.</p>
+    </div>
+
+    <script type="module" src="../js/shop-detalhe-pedido.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+</body>
+
+</html>

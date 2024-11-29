@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  
+  <head>
+    <!-- @Desenvolvido por: Matheus Campos-->
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>Login</title>
+    <link rel="icon" href="../assets/images/icone.ico">
+    <link href="../css/login.css" rel="stylesheet" type="text/css" />
+    <script type="module" src="../js/login.js" defer></script>
+</head>
+
+<body>
+  
+<main>
+  <section class="area-login">
+
+    <div class="login">
+      <div class="logoDiv">
+          <a href="index.html">
+            <img class="logo"  src="../assets/images/logo.220x186.png" alt="Logo"></a>
+          </a>
+        </div>
+
+      <form id="loginForm">
+
+        <p>Usuário:</p>
+        <input type="text" id="email" placeholder="Digite seu e-mail" autofocus>
+
+        <p>Senha:</p>
+        <input type="password" id="password" placeholder="Digite sua senha">
+        <input type="submit" value="entrar">
+      </form>   
+
+      <p>Ainda não tem uma conta?<a id="lnkRegister" href="customer/register.html"> Criar conta</a></p>
+
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+
+</body>
+
+</html>

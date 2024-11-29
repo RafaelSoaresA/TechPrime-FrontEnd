@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="icon" href="../assets/images/icone.ico">
+    <link rel="stylesheet" href="../css/shop-cart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <style>
+        .endereco-estrutura {
+            white-space: pre-wrap;
+        }
+
+        #updateAddressTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #updateAddressTable td {
+            padding: 8px;
+        }
+        .error {
+                color: red;
+                font-size: 0.9em;
+            }
+        .address-data-cell-order, .deliveryAddress-data-cell-order , .payment-data-cell-order {
+            white-space: pre-line; 
+        }
+
+    </style>
+    
+</head>
+
+<body>
+
+    <header>
+        <a href="#" class="logo"><img src="../assets/images/logo.220x186.png" alt="Logo"></a>
+
+        <ul class="navmenu">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="shop.html">Loja</a></li>
+            <li><a href="#">Ofertas</a></li>
+            <li><a href="#">Suporte</a></li>
+            <li><a href="#">Sobre</a></li>
+        </ul>
+
+        <div class="nav-icon">
+            <a href="#"><i class='bx bx-search'></i></a>
+            <a href="#" onclick="IrHome();"><i class='bx bx-user'></i></a>
+            <a href="shop-lista-pedidos.html" ><i class='bx bxs-package'></i></a>   
+            <a href="#"><i class='bx bx-cart'></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </header>
+
+    <section class="cart-section">
+        <h1 id="ResumoPedido">Dados do seu Pedido:</h1>
+        <h3 id="DetalheResumoPedido" style="display: none; color:red;"></h3>
+        <br/>
+        <div class="cart-container">
+            <h3>Dados do Cliente:</h3>
+            <table id="userTable" border="1"> 
+                <thead> 
+                    <tr> 
+                        <th>Campo</th> 
+                        <th>Valor</th> 
+                    </tr> 
+                </thead> 
+                <tbody></tbody> 
+            </table>
+            <br/>
+            <h3>Resumo do Pedido</h3>
+            <table id="orderSummaryTable">
+                <thead>
+                    <tr>
+                        <th>Imagem</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <div class="summary-item total">
+                <label><strong>Valor Total:</strong><div id="totalPrice"></div></label>
+            </div>
+
+            <br/>
+            <h3>Endereço de Faturamento</h3>
+            <table id="billingAddressTableOrder">
+                <thead>
+                    <tr>
+                        <th>Endereço de Faturamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="address-data-cell-order"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="billingTable">
+                <thead>
+                    <tr>
+                        <th>Dados do Endereço</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <table id="updateAddressForm">
+                <tbody>
+                    <tr class="row1" style="width: 100%;">
+                        <td>
+                            <input type="checkbox" id="updateAddressCheckbox"><strong> Atualizar Endereço de Faturamento</strong
+                        </td>
+                    </tr>
+                    <tr class="row2" id="formRow" style="display: none; width: 100%;">
+                        <td>
+                            <form id="frmBillingAddress">
+                                    
+                                <label for="zipCode">CEP:</label><br>
+                                <input type="text" id="zipCode" name="zipCode" onblur="buscarEndereco()" value=""  maxlength="9" placeholder="00000-000" required><br><br>
+                                
+                                <label for="addressType">Tipo de Endereço:</label><br>
+                                <input type="text" id="addressType" name="addressType" value="" maxlength="20" required><br><br>
+                                
+                                <label for="address">Endereço:</label><br>
+                                <input type="text" id="address" name="address" value=""  maxlength="250" required><br><br>
+                                
+                                <label for="number">Número:</label><br>
+                                <input type="text" id="number" name="number" value=""  maxlength="20" required><br><br>
+                                
+                                <label for="complement">Complemento:</label><br>
+                                <input type="text" id="complement" name="complement" value="" maxlength="100"><br><br>
+                                
+                                <label for="neighborhood">Bairro:</label><br>
+                                <input type="text" id="neighborhood" name="neighborhood" value="" maxlength="100" required><br><br>
+                                
+                                <label for="city">Cidade:</label><br>
+                                <input type="text" id="city" name="city" value="" maxlength="100" required><br><br>
+                                
+                                <label for="state">Estado:</label><br>
+                                <input type="text" id="state" name="state" value="" maxlength="2" required><br><br>
+                                
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br />
+            <h3>Endereço de Entrega</h3>
+            <table id="deliveryAddressTableOrder">
+                <thead>
+                    <tr>
+                        <th>Endereço de Entrega</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="deliveryAddress-data-cell-order"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="deliveryTable">
+                <thead>
+                    <tr>
+                        <th>Selecionar</th>
+                        <th>Dados do Endereço</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <table id="createDeliveryAddressForm">
+                <tbody>
+                    <tr class="row1" style="width: 100%;">
+                        <td>
+                            <input type="checkbox" id="createDeliveryAddressCheckbox"><strong> Novo Endereço de Entrega</strong
+                        </td>
+                    </tr>
+                    <tr class="row2" id="formRowDelivery" style="display: none; width: 100%;">
+                        <td>
+                            <form id="frmDeliveryAddress"> 
+                                <label for="apelidoDelivery">Apelido:</label><br>
+                                <input type="text" id="apelidoDelivery" name="apelido" value="" required><br><br>
+
+                                <label for="zipCodeDelivery">CEP:</label><br>
+                                <input type="text" id="zipCodeDelivery" name="zipCode" onblur="buscarEnderecoDelivery()" value="" maxlength="9" placeholder="00000-000" required><br><br>
+                                
+                                <label for="addressTypeDelivery">Tipo de Endereço:</label><br>
+                                <input type="text" id="addressTypeDelivery" name="addressType" value="" maxlength="20" required><br><br>
+                                
+                                <label for="addressDelivery">Endereço:</label><br>
+                                <input type="text" id="addressDelivery" name="address" value="" maxlength="250" required><br><br>
+                                
+                                <label for="numberDelivery">Número:</label><br>
+                                <input type="text" id="numberDelivery" name="number" value="" maxlength="20" required><br><br>
+                                
+                                <label for="complementDelivery">Complemento:</label><br>
+                                <input type="text" id="complementDelivery" name="complement" value="" maxlength="100"><br><br>
+                                
+                                <label for="neighborhoodDelivery">Bairro:</label><br>
+                                <input type="text" id="neighborhoodDelivery" name="neighborhood" value="" maxlength="100" required><br><br>
+                                
+                                <label for="cityDelivery">Cidade:</label><br>
+                                <input type="text" id="cityDelivery" name="city" value="" maxlength="100" required><br><br>
+                                
+                                <label for="stateDelivery">Estado:</label><br>
+                                <input type="text" id="stateDelivery" name="state" value="" maxlength="2" required><br><br>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <br/>
+            <h3>Forma de Pagamento</h3>
+            <table id="paymentTableOrder">
+                <thead>
+                    <tr>
+                        <th>Forma de Pagamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="payment-data-cell-order"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="uniqueSelectionTable">
+                <thead>
+                    <tr>
+                        <th>Selecionar</th>
+                        <th>Dados</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" id="checkboxBL" name="selection" onchange="handleSelection(this, 'BL')"></td>
+                        <td>boleto</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="checkboxCC" name="selection" onchange="handleSelection(this, 'CC')"></td>
+                        <td>cartão de crédito</td>
+                    </tr>
+                    <tr class="disabled" id="creditCardDetails">
+                        <td colspan="2">
+                            <form id="frmCreditCard">
+                                <label for="cardNumber"><strong>Número do Cartão:</strong></label>
+                                <input type="text" id="cardNumber" name="cardNumber" value="" minlength="16" maxlength="16" disabled required><br>
+                                
+                                <label for="cvv"><strong>CVV:</strong></label>
+                                <input type="text" id="cvv" name="cvv" value="" maxlength="4" placeholder="0000" disabled required><br>
+                                
+                                <label for="fullname"><strong>Nome Completo:</strong></label>
+                                <input type="text" id="fullname" name="fullname" value="" maxlength="300" disabled required><br>
+                                
+                                <label for="expireDate"><strong>Data de Expiração:</strong></label>
+                                <input type="text" id="expireDate" name="expireDate" value=""  maxlength="7" placeholder="MM/YYYY" disabled required>
+
+                                <label for="installmentsNumber"><strong>Número de parcelas:</strong></label>
+                                <input type="text" id="installmentsNumber" name="installmentsNumber" value="" maxlength="2" placeholder="00" disabled required>
+                                <span id="installmentsError" class="error"></span>
+
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <button class="checkout-btn" id="back-btn">Voltar</button>
+            <button class="checkout-btn" id="checkout-btn">Concluir Compra</button>
+            
+        </div>
+    </section>
+    <!-- contact-section -->
+
+    <section class="contact">
+        <div class="contact-info">
+            <div class="first-info">
+                <img src="../assets/images/logo.220x186.png" alt="">
+                <p>Senac nações unidas, <br> São Paulo 04444-000</p>
+                <p>11943675407</p>
+                <p>techprime.contato@tp.com.br</p>
+                <div class="social-icon">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-youtube'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+
+            <div class="second-info">
+                <h4>Suporte</h4>
+                <p>Fale Conosco</p>
+                <p>Sobre nós</p>
+                <p>Dúvidas Frequentes</p>
+                <p>Privacidade</p>
+            </div>
+
+            <div class="third-info">
+                <h4>Departamentos</h4>
+                <p>Hardware</p>
+                <p>Periféricos</p>
+                <p>Ofertas Relâmpago</p>
+                <p>Cupons de Desconto</p>
+            </div>
+
+            <div class="forth-info">
+                <h4>TechPrime</h4>
+                <p>Afilie-se</p>
+                <p>Termos de Uso</p>
+                <p>Política de Privacidade</p>
+                <p>Política de Cookies</p>
+                <p>Mapa do Site</p>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="end-text">
+        <p>&copy; 2024 TechPrime. Todos os direitos reservados.</p>
+    </div>
+
+    <script type="module" src="../js/shop-order.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        async function buscarEndereco() {
+            const cep = document.getElementById('zipCode').value;
+            const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
+            
+            function separarLogradouro(frase) {
+                const palavras = frase.split(' ');
+                const primeiraPalavra = palavras.shift();
+                const restante = palavras.join(' ');
+                return {
+                    TipoLogradouro: primeiraPalavra,
+                    Logradouro: restante,
+                };
+            }
+
+            if (!cepRegex.test(cep)) {
+                if (cep === "") {
+                    return;
+                }
+                alert('Por favor, insira um CEP válido no formato 00000-000.');
+                return;
+            }
+  
+            try {
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+                
+                if (data.erro) {
+                    alert('CEP não encontrado!');
+                    return;
+                }
+  
+                //document.getElementById('complemento').value = data.complemento || '';
+                document.getElementById('addressType').value = separarLogradouro(data.logradouro).TipoLogradouro;
+                document.getElementById('address').value = separarLogradouro(data.logradouro).Logradouro;
+                document.getElementById('neighborhood').value = data.bairro;
+                document.getElementById('city').value = data.localidade;
+                document.getElementById('state').value = data.uf;
+                console.log(data);
+                
+            } catch (error) {
+                alert('Erro ao buscar o endereço. Tente novamente mais tarde.');
+                console.error('Erro:', error);
+            }
+
+
+            
+        }
+
+        async function buscarEnderecoDelivery() {
+            const cep = document.getElementById('zipCodeDelivery').value;
+            const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
+            
+            function separarLogradouro(frase) {
+                const palavras = frase.split(' ');
+                const primeiraPalavra = palavras.shift();
+                const restante = palavras.join(' ');
+                return {
+                    TipoLogradouro: primeiraPalavra,
+                    Logradouro: restante,
+                };
+            }
+
+            if (!cepRegex.test(cep)) {
+                if (cep === "") {
+                    return;
+                }
+                alert('Por favor, insira um CEP válido no formato 00000-000.');
+                return;
+            }
+  
+            try {
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+                
+                if (data.erro) {
+                    alert('CEP não encontrado!');
+                    return;
+                }
+  
+                //document.getElementById('complemento').value = data.complemento || '';
+                document.getElementById('addressTypeDelivery').value = separarLogradouro(data.logradouro).TipoLogradouro;
+                document.getElementById('addressDelivery').value = separarLogradouro(data.logradouro).Logradouro;
+                document.getElementById('neighborhoodDelivery').value = data.bairro;
+                document.getElementById('cityDelivery').value = data.localidade;
+                document.getElementById('stateDelivery').value = data.uf;
+                console.log(data);
+                
+            } catch (error) {
+                alert('Erro ao buscar o endereço. Tente novamente mais tarde.');
+                console.error('Erro:', error);
+            }
+
+
+            
+        }
+
+    </script>
+
+</body>
+
+</html>

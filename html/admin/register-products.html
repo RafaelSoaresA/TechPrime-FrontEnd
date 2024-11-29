@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração de Usuários</title>
+    <link rel="icon" href="../../assets/images/icone.ico">
+    <link rel="stylesheet" href="../../css/registerUsers.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+</head>
+
+<body>
+
+    <header>
+        <a href="admin.html" class="logo"><img src="../../assets/images/logo.220x186.png" alt=""></a>
+
+        <ul class="navmenu">
+            <li><a href="admin.html">Dashboard</a></li>
+            <li><a href="users-list.html">Lista de Usuários</a></li>
+            <li><a href="products-list.html">Lista de Produtos</a></li>
+            <li><a href="register-users.html">Cadastrar Usuários</a></li>
+            <li><a href="register-products.html">Cadastrar Produtos</a></li>
+            <li><a href="../shop-lista-pedidos.html">Lista de Pedidos</a></li>
+
+        </ul>
+
+        <div class="nav-icon">
+            <a href="#"><i class='bx bx-search'></i></a>
+            <a href="updateUser.html"><i class='bx bx-user'></i></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+    </header>
+
+    <section class="main-home">
+        <h1>Cadastrar <span>Produtos</span></h1>
+
+        <form id="registerForm">
+
+            <p>Nome :</p>
+            <input type="text" id="name" placeholder="Digite o nome do produto" required>
+
+            <p>Tipo :</p>
+            <input type="text" id="type" placeholder="Digite o tipo do produto" required>
+            
+            <p>Preço :</p>
+            <input type="value" id="price" placeholder="Digite o preço do produto" required>
+
+            <p>Quantidade :</p>
+            <input type="value" id="quantity" placeholder="Digite a quantidade do produto" required>
+
+            <p>Nota :</p>
+            <input type="value" id="rating" placeholder="Digite a nota do produto" required>
+
+            <p>Descrição :</p>
+            <textarea id="description" placeholder="Digite a descrição do produto"></textarea>
+
+            <input type="submit" value="Criar">
+
+        </form>
+
+
+    </section>
+
+    <script type="module" src="../../js/register-products.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+
+</body>
+
+</html>
